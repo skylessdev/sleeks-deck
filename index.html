@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sleeks - Pitch Deck</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,179 +14,233 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #f5f2e8 0%, #e8dcc0 100%);
-            overflow-x: hidden;
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            background: #ffffff;
+            color: #2c3e50;
+            line-height: 1.4;
         }
 
         .slide {
-            min-height: 100vh;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 4rem;
+            page-break-after: always;
             position: relative;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .slide.active {
-            opacity: 1;
-            transform: translateY(0);
+        .slide:last-child {
+            page-break-after: avoid;
         }
 
+        /* Slide-specific backgrounds */
         .slide-1 {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-            color: #f5f2e8;
+            background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+            color: #ffffff;
             text-align: center;
         }
 
         .slide-2 {
-            background: linear-gradient(135deg, #c0392b 0%, #8b2635 100%);
-            color: #f5f2e8;
+            background: #ffffff;
+            color: #2c3e50;
         }
 
         .slide-3 {
-            background: linear-gradient(135deg, #f5f2e8 0%, #e8dcc0 100%);
+            background: #f8f9fa;
             color: #2c3e50;
         }
 
         .slide-4 {
-            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-            color: #f5f2e8;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ffffff;
         }
 
         .slide-5 {
-            background: linear-gradient(135deg, #d35400 0%, #c0392b 100%);
-            color: #f5f2e8;
+            background: #ffffff;
+            color: #2c3e50;
         }
 
         .slide-6 {
-            background: linear-gradient(135deg, #f5f2e8 0%, #e8dcc0 100%);
+            background: #f8f9fa;
             color: #2c3e50;
         }
 
         .slide-7 {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-            color: #f5f2e8;
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            color: #ffffff;
+            text-align: center;
         }
 
+        /* Typography */
         h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: normal;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 400;
             font-style: italic;
             margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: -2px;
+            color: #c0392b;
+        }
+
+        .slide-1 h1, .slide-7 h1 {
+            color: #ffffff;
         }
 
         h2 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: bold;
-            margin-bottom: 2rem;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-align: center;
         }
 
         h3 {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: normal;
-            margin-bottom: 1.5rem;
-            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #c0392b;
+        }
+
+        .slide-4 h3, .slide-7 h3 {
+            color: #ffffff;
         }
 
         .tagline {
-            font-size: clamp(1.2rem, 2.5vw, 2rem);
-            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
             font-style: italic;
+            margin-bottom: 2rem;
             opacity: 0.9;
+            text-align: center;
         }
 
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        /* Problem slide */
         .problem-list {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-size: 1.4rem;
             line-height: 1.8;
-            max-width: 800px;
+            max-width: 900px;
             text-align: left;
+            list-style: none;
         }
 
         .problem-list li {
-            margin-bottom: 1rem;
-            list-style: none;
+            margin-bottom: 1.5rem;
             position: relative;
-            padding-left: 2rem;
+            padding-left: 2.5rem;
         }
 
         .problem-list li:before {
             content: "×";
             position: absolute;
             left: 0;
+            top: 0;
             color: #c0392b;
-            font-size: 1.5em;
+            font-size: 2rem;
             font-weight: bold;
         }
 
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-top: 3rem;
+            text-align: center;
+            color: #c0392b;
+        }
+
+        /* Grid layouts */
         .solution-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1100px;
             width: 100%;
         }
 
         .solution-item {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.95);
+            padding: 2.5rem;
+            border-radius: 8px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease;
+            border: 2px solid #e8dcc0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .solution-item:hover {
-            transform: translateY(-5px);
+        .slide-4 .solution-item {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: #ffffff;
         }
 
+        .solution-item h3 {
+            margin-bottom: 1rem;
+        }
+
+        .solution-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Market stats */
         .market-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            max-width: 800px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            max-width: 900px;
             width: 100%;
             text-align: center;
         }
 
         .stat {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: bold;
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
             color: #c0392b;
         }
 
         .stat-label {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            opacity: 0.8;
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0.9;
         }
 
+        .market-description {
+            font-size: 1.3rem;
+            margin-top: 3rem;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* Brand values */
         .brand-values {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
             width: 100%;
-            gap: 2rem;
         }
 
         .value {
             text-align: center;
-            flex: 1;
-            min-width: 200px;
         }
 
         .value h4 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             color: #c0392b;
             text-transform: uppercase;
@@ -192,109 +248,110 @@
         }
 
         .value p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.5;
         }
 
+        /* Financial breakdown */
+        .financial-breakdown {
+            max-width: 600px;
+            text-align: left;
+            font-size: 1.4rem;
+            line-height: 2;
+            margin: 2rem 0;
+        }
+
+        .financial-breakdown p {
+            margin-bottom: 0.8rem;
+        }
+
+        .financial-breakdown strong {
+            color: #c0392b;
+            font-weight: 700;
+        }
+
+        .slide-7 .financial-breakdown strong {
+            color: #ffffff;
+        }
+
+        /* CTA Button */
         .cta {
             margin-top: 3rem;
-            padding: 1.5rem 3rem;
-            background: linear-gradient(45deg, #c0392b, #d35400);
+            padding: 1.5rem 4rem;
+            background: #c0392b;
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(192, 57, 43, 0.3);
+            box-shadow: 0 8px 24px rgba(192, 57, 43, 0.3);
         }
 
-        .cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(192, 57, 43, 0.4);
+        /* Print optimization */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .slide {
+                page-break-after: always;
+                width: 100%;
+                height: 100vh;
+                box-sizing: border-box;
+            }
+            
+            .slide:last-child {
+                page-break-after: avoid;
+            }
         }
 
-        .navigation {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            gap: 1rem;
-            z-index: 1000;
+        @page {
+            size: landscape;
+            margin: 0.5in;
         }
 
-        .nav-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+        /* Hide navigation for PDF */
+        .navigation, .slide-indicator {
+            display: none;
         }
 
-        .nav-btn:hover {
-            background: rgba(192, 57, 43, 0.8);
-            border-color: #c0392b;
-            transform: scale(1.1);
-        }
-
-        .slide-indicator {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
-            z-index: 1000;
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .solution-grid, .brand-values {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .market-stats {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 768px) {
             .slide {
-                padding: 1rem;
+                padding: 2rem;
             }
             
-            .navigation {
-                bottom: 1rem;
-                right: 1rem;
-            }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
             
-            .slide-indicator {
-                bottom: 1rem;
-                left: 1rem;
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .solution-grid, .brand-values {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Slide 1: Title -->
-    <div class="slide slide-1 active">
+    <div class="slide slide-1">
         <h1>Sleeks</h1>
         <p class="tagline">Not your dad's smokes.<br>But he might like 'em.</p>
-        <p style="font-size: 1.2rem; margin-top: 2rem; opacity: 0.8;">Premium Cannabis. Timeless Style.</p>
+        <p class="subtitle">Premium Cannabis. Timeless Style.</p>
     </div>
 
     <!-- Slide 2: Problem -->
@@ -306,7 +363,7 @@
             <li>The market lacks a brand that bridges nostalgia with modern quality</li>
             <li>Premium positioning exists, but authentic style doesn't</li>
         </ul>
-        <p style="font-size: 1.5rem; margin-top: 2rem; font-style: italic;">
+        <p class="quote">
             "Because you're not 17 anymore... but you still remember."
         </p>
     </div>
@@ -351,7 +408,7 @@
                 <div class="stat-label">Average Monthly Spend</div>
             </div>
         </div>
-        <p style="font-size: 1.3rem; margin-top: 3rem; text-align: center; max-width: 600px;">
+        <p class="market-description">
             The premium adult cannabis market is underserved by brands that understand 
             sophistication isn't about being boring—it's about being timeless.
         </p>
@@ -378,7 +435,7 @@
                 <p>Style made attainable, not intimidating</p>
             </div>
         </div>
-        <p style="font-size: 1.4rem; margin-top: 3rem; text-align: center; font-style: italic;">
+        <p class="quote">
             "Pilates at 6. Vice at 6:45. Balance is everything."
         </p>
     </div>
@@ -410,63 +467,25 @@
     <div class="slide slide-7">
         <h2>The Ask</h2>
         <h3>$2.5M Series A</h3>
-        <div style="max-width: 600px; text-align: left; font-size: 1.2rem; line-height: 1.8;">
+        <div class="financial-breakdown">
             <p><strong>50%</strong> Product development & inventory</p>
             <p><strong>30%</strong> Marketing & brand building</p>
             <p><strong>15%</strong> Team expansion</p>
             <p><strong>5%</strong> Legal & compliance</p>
         </div>
-        <p style="font-size: 1.5rem; margin: 3rem 0; font-style: italic;">
+        <p class="quote">
             "Stage six survival kit: Eskom-proof, Saffa-approved."
         </p>
-        <button class="cta" onclick="showContact()">Let's Roll</button>
-    </div>
-
-    <!-- Navigation -->
-    <div class="navigation">
-        <button class="nav-btn" onclick="prevSlide()">‹</button>
-        <button class="nav-btn" onclick="nextSlide()">›</button>
-    </div>
-
-    <div class="slide-indicator">
-        <span id="current-slide">1</span> / 7
+        <button class="cta">Let's Roll</button>
     </div>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
-            slides[currentSlide].classList.add('active');
-            document.getElementById('current-slide').textContent = currentSlide + 1;
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        function showContact() {
-            alert('Ready to invest in the future of sophisticated cannabis?\n\nContact: hello@sleeks.co.za\n\n"Rolls off the tongue."');
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
-        });
-
-        // Auto-advance (optional)
-        // setInterval(nextSlide, 8000);
+        // Auto-print functionality (optional)
+        // window.onload = function() {
+        //     setTimeout(function() {
+        //         window.print();
+        //     }, 1000);
+        // }
     </script>
 </body>
 </html>
