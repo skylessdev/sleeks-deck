@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleeks - Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f2e8 0%, #e8dcc0 100%);
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-1 {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: #f5f2e8;
+            text-align: center;
+        }
+
+        .slide-2 {
+            background: linear-gradient(135deg, #c0392b 0%, #8b2635 100%);
+            color: #f5f2e8;
+        }
+
+        .slide-3 {
+            background: linear-gradient(135deg, #f5f2e8 0%, #e8dcc0 100%);
+            color: #2c3e50;
+        }
+
+        .slide-4 {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: #f5f2e8;
+        }
+
+        .slide-5 {
+            background: linear-gradient(135deg, #d35400 0%, #c0392b 100%);
+            color: #f5f2e8;
+        }
+
+        .slide-6 {
+            background: linear-gradient(135deg, #f5f2e8 0%, #e8dcc0 100%);
+            color: #2c3e50;
+        }
+
+        .slide-7 {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: #f5f2e8;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: normal;
+            font-style: italic;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            margin-bottom: 3rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .problem-list {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            line-height: 1.8;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .problem-list li {
+            margin-bottom: 1rem;
+            list-style: none;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .problem-list li:before {
+            content: "×";
+            position: absolute;
+            left: 0;
+            color: #c0392b;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .solution-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .solution-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .stat {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #c0392b;
+        }
+
+        .stat-label {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.8;
+        }
+
+        .brand-values {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            width: 100%;
+            gap: 2rem;
+        }
+
+        .value {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .value h4 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+            color: #c0392b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .value p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+        }
+
+        .cta {
+            margin-top: 3rem;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(45deg, #c0392b, #d35400);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(192, 57, 43, 0.3);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(192, 57, 43, 0.4);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(192, 57, 43, 0.8);
+            border-color: #c0392b;
+            transform: scale(1.1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1rem;
+            }
+            
+            .navigation {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .slide-indicator {
+                bottom: 1rem;
+                left: 1rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide slide-1 active">
+        <h1>Sleeks</h1>
+        <p class="tagline">Not your dad's smokes.<br>But he might like 'em.</p>
+        <p style="font-size: 1.2rem; margin-top: 2rem; opacity: 0.8;">Premium Cannabis. Timeless Style.</p>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide slide-2">
+        <h2>The Problem</h2>
+        <ul class="problem-list">
+            <li>Cannabis brands look like they were designed by teenagers for teenagers</li>
+            <li>Adult consumers want sophistication, not cartoon leaves and neon colors</li>
+            <li>The market lacks a brand that bridges nostalgia with modern quality</li>
+            <li>Premium positioning exists, but authentic style doesn't</li>
+        </ul>
+        <p style="font-size: 1.5rem; margin-top: 2rem; font-style: italic;">
+            "Because you're not 17 anymore... but you still remember."
+        </p>
+    </div>
+
+    <!-- Slide 3: Solution -->
+    <div class="slide slide-3">
+        <h2>The Solution</h2>
+        <div class="solution-grid">
+            <div class="solution-item">
+                <h3>Timeless Design</h3>
+                <p>Cigarette pack nostalgia meets premium cannabis quality</p>
+            </div>
+            <div class="solution-item">
+                <h3>Adult Audience</h3>
+                <p>Marketing that speaks to grown-ups who've lived a little</p>
+            </div>
+            <div class="solution-item">
+                <h3>Cultural Bridge</h3>
+                <p>Connecting past and present with wit and sophistication</p>
+            </div>
+            <div class="solution-item">
+                <h3>Premium Quality</h3>
+                <p>King Size product in pocket-ready packaging</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Market -->
+    <div class="slide slide-4">
+        <h2>Market Opportunity</h2>
+        <div class="market-stats">
+            <div>
+                <div class="stat">$32B</div>
+                <div class="stat-label">Global Cannabis Market 2024</div>
+            </div>
+            <div>
+                <div class="stat">78%</div>
+                <div class="stat-label">Adult Users 25+ Years Old</div>
+            </div>
+            <div>
+                <div class="stat">$89</div>
+                <div class="stat-label">Average Monthly Spend</div>
+            </div>
+        </div>
+        <p style="font-size: 1.3rem; margin-top: 3rem; text-align: center; max-width: 600px;">
+            The premium adult cannabis market is underserved by brands that understand 
+            sophistication isn't about being boring—it's about being timeless.
+        </p>
+    </div>
+
+    <!-- Slide 5: Brand Positioning -->
+    <div class="slide slide-5">
+        <h2>Brand DNA</h2>
+        <div class="brand-values">
+            <div class="value">
+                <h4>Nostalgic</h4>
+                <p>Familiar aesthetics that feel like home</p>
+            </div>
+            <div class="value">
+                <h4>Witty</h4>
+                <p>Smart humor that rewards intelligence</p>
+            </div>
+            <div class="value">
+                <h4>Premium</h4>
+                <p>Quality product in elevated packaging</p>
+            </div>
+            <div class="value">
+                <h4>Accessible</h4>
+                <p>Style made attainable, not intimidating</p>
+            </div>
+        </div>
+        <p style="font-size: 1.4rem; margin-top: 3rem; text-align: center; font-style: italic;">
+            "Pilates at 6. Vice at 6:45. Balance is everything."
+        </p>
+    </div>
+
+    <!-- Slide 6: Business Model -->
+    <div class="slide slide-6">
+        <h2>Revenue Streams</h2>
+        <div class="solution-grid">
+            <div class="solution-item">
+                <h3>King Size Packs</h3>
+                <p>Premium flower in iconic packaging<br><strong>$45-65 per pack</strong></p>
+            </div>
+            <div class="solution-item">
+                <h3>Limited Editions</h3>
+                <p>Special releases and collaborations<br><strong>$75-100 per pack</strong></p>
+            </div>
+            <div class="solution-item">
+                <h3>Gummies & Edibles</h3>
+                <p>Discreet consumption options<br><strong>$25-40 per package</strong></p>
+            </div>
+            <div class="solution-item">
+                <h3>Lifestyle Products</h3>
+                <p>Accessories and branded merchandise<br><strong>$15-150 per item</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: The Ask -->
+    <div class="slide slide-7">
+        <h2>The Ask</h2>
+        <h3>$2.5M Series A</h3>
+        <div style="max-width: 600px; text-align: left; font-size: 1.2rem; line-height: 1.8;">
+            <p><strong>50%</strong> Product development & inventory</p>
+            <p><strong>30%</strong> Marketing & brand building</p>
+            <p><strong>15%</strong> Team expansion</p>
+            <p><strong>5%</strong> Legal & compliance</p>
+        </div>
+        <p style="font-size: 1.5rem; margin: 3rem 0; font-style: italic;">
+            "Stage six survival kit: Eskom-proof, Saffa-approved."
+        </p>
+        <button class="cta" onclick="showContact()">Let's Roll</button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <div class="slide-indicator">
+        <span id="current-slide">1</span> / 7
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function showContact() {
+            alert('Ready to invest in the future of sophisticated cannabis?\n\nContact: hello@sleeks.co.za\n\n"Rolls off the tongue."');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Auto-advance (optional)
+        // setInterval(nextSlide, 8000);
+    </script>
+</body>
+</html>
